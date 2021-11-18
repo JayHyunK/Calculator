@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- String 형태로 데이터를 가져와서 처리하지만, 결국 식별을 위해서 String 보다 우선 해당 Text View를 사용하는 방법을 생각해볼것. -->
 <MotionScene 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:motion="http://schemas.android.com/apk/res-auto">
