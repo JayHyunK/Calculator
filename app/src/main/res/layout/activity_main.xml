@@ -18,40 +18,65 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button" />
+            android:text="@string/button"
+            tools:ignore="DuplicateSpeakableTextCheck"
+            style="?android:attr/buttonBarButtonStyle" />
 
         <Button
             android:id="@+id/button37"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button" />
+            android:text="@string/button2" />
 
         <Button
             android:id="@+id/button38"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button" />
+            android:text="@string/button3" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/calcArea"
-        android:layout_width="match_parent"
-        android:layout_height="89dp"
-        android:visibility="gone" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/calcList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="84dp"
-        android:orientation="horizontal">
+        android:layout_height="254dp"
+        android:orientation="vertical">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/calcList"
+            android:layout_width="match_parent"
+            android:layout_height="254dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/calcArea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/caclEdit"
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:text="@string/editTextBasic"
+            tools:ignore="LabelFor,SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
+
+        <TextView
+            android:id="@+id/calcEditResult"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:textAlignment="viewEnd" />
     </LinearLayout>
 
     <LinearLayout
@@ -67,89 +92,49 @@
 
             <Button
                 android:id="@+id/nSquare"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="n제곱" />
-
-            <Button
-                android:id="@+id/pi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="π" />
-
-            <Button
-                android:id="@+id/e"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="e" />
-
-            <Button
-                android:id="@+id/clear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="c" />
-
-            <Button
-                android:id="@+id/backSpace"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="지움" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                android:text="@string/n"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/square"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="제곱" />
+                android:text="@string/XmultiplyY"
+                android:textAllCaps="false" />
 
             <Button
-                android:id="@+id/rationalNumber"
+                android:id="@+id/roots"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="1/x" />
+                android:text="@string/roots"
+                android:textAllCaps="false" />
 
             <Button
-                android:id="@+id/absoluteValue"
+                android:id="@+id/clear"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="|x|" />
+                android:text="@string/clear"
+                android:textAllCaps="false" />
 
             <Button
-                android:id="@+id/exponent"
+                android:id="@+id/backSpace"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="exp" />
+                android:text="@string/backSpace"
+                android:textAllCaps="false" />
 
-            <Button
-                android:id="@+id/modular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="mod" />
         </LinearLayout>
 
         <LinearLayout
@@ -158,20 +143,13 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/roots"
+                android:id="@+id/pi"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="루트" />
-
-            <Button
-                android:id="@+id/rightBlock"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="(" />
+                android:text="@string/pi"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/leftBlock"
@@ -179,15 +157,26 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAllCaps="false"
-                android:text=")" />
+                android:text="@string/leftBlock"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
-                android:id="@+id/factorial"
+                android:id="@+id/rightBlock"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="n!" />
+                android:text="@string/rightBlock"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/modular"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/mod"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/division"
@@ -195,7 +184,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAllCaps="false"
-                android:text="/" />
+                android:text="@string/division"
+                style="?android:attr/buttonBarButtonStyle" />
         </LinearLayout>
 
         <LinearLayout
@@ -204,12 +194,13 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/xSquareY"
+                android:id="@+id/factorial"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="xy" />
+                android:text="@string/nFactorial"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/seven"
@@ -217,7 +208,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAllCaps="false"
-                android:text="7" />
+                android:text="@string/seven"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/eight"
@@ -225,7 +217,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAllCaps="false"
-                android:text="8" />
+                android:text="@string/eight"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/nine"
@@ -233,7 +226,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAllCaps="false"
-                android:text="9" />
+                android:text="@string/nine"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/multiply"
@@ -241,53 +235,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAllCaps="false"
-                android:text="*" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/tenX"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="10x" />
-
-            <Button
-                android:id="@+id/four"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="4" />
-
-            <Button
-                android:id="@+id/five"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="5" />
-
-            <Button
-                android:id="@+id/six"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="6" />
-
-            <Button
-                android:id="@+id/minus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="-" />
+                android:text="@string/multiply"
+                style="?android:attr/buttonBarButtonStyle" />
         </LinearLayout>
 
         <LinearLayout
@@ -297,43 +246,48 @@
 
             <Button
                 android:id="@+id/log"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="log" />
+                android:text="@string/log"
+                android:textAllCaps="false" />
 
             <Button
-                android:id="@+id/one"
+                android:id="@+id/four"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAllCaps="false"
-                android:text="1" />
+                android:text="@string/four"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
-                android:id="@+id/two"
+                android:id="@+id/five"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAllCaps="false"
-                android:text="2" />
+                android:text="@string/five"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
-                android:id="@+id/three"
+                android:id="@+id/six"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAllCaps="false"
-                android:text="3" />
+                android:text="@string/six"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
-                android:id="@+id/plus"
+                android:id="@+id/minus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAllCaps="false"
-                android:text="+" />
+                android:text="@string/minus"
+                style="?android:attr/buttonBarButtonStyle" />
         </LinearLayout>
 
         <LinearLayout
@@ -342,20 +296,73 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/in"
+                android:id="@+id/ln"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="in" />
+                android:text="@string/ln"
+                android:textAllCaps="false" />
 
             <Button
-                android:id="@+id/signb"
+                android:id="@+id/one"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAllCaps="false"
-                android:text="+/-" />
+                android:text="@string/one"
+                style="?android:attr/buttonBarButtonStyle" />
+
+            <Button
+                android:id="@+id/two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:text="@string/two"
+                style="?android:attr/buttonBarButtonStyle" />
+
+            <Button
+                android:id="@+id/three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:text="@string/three"
+                style="?android:attr/buttonBarButtonStyle" />
+
+            <Button
+                android:id="@+id/plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:text="@string/plus"
+                style="?android:attr/buttonBarButtonStyle" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/ans"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/ans"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/e"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/e"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/zero"
@@ -363,7 +370,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAllCaps="false"
-                android:text="0" />
+                android:text="@string/zero"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/point"
@@ -371,15 +379,18 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAllCaps="false"
-                android:text="." />
+                android:text="@string/point"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/equal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="="
-                android:textAllCaps="false" />
+                android:text="@string/equalsSign"
+                android:textAllCaps="false"
+                style="?android:attr/buttonBarButtonStyle" />
+
         </LinearLayout>
     </LinearLayout>
 
