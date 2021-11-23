@@ -26,10 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Test 데이터
         ArrayList<String> list = new ArrayList<>();
-        for (int i=0; i<5; i++) {
-            String arr = i+"×1=#"+i;
-            list.add(arr) ;
-        }
+
         RVCalcListAdapter adapter = new RVCalcListAdapter(list);
         RecyclerView calcList = findViewById(R.id.calcList);
 
@@ -414,11 +411,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String calcdata = calcEdit.getText().toString();
                 list.add(calc.mathCalc(calcdata));
-                str = "";
+                str = "0";
                 calcEdit.setText(str);
 
                 RVCalcListAdapter adapter = new RVCalcListAdapter(list);
                 RecyclerView calcList = findViewById(R.id.calcList);
+
                 calcList.setAdapter(adapter);
             }
         });
@@ -427,6 +425,10 @@ public class MainActivity extends AppCompatActivity {
         // Math.max 는 에초에 커서가 잡혀있지않을때를 대비해서 넣음.
         int s = Math.max(view.getSelectionStart(), 0);
         int e = Math.max(view.getSelectionEnd(), 0);
+        if(view.getText().equals("0")!=true&&view.getText().length()==1){
+            s = 1;
+            e = 1;
+        }
         // 역으로 선택된 경우 s가 e보다 클 수 있다 때문에 이렇게 Math.min Math.max를 쓴다.
         view.getText().replace(Math.min(s, e), Math.max(s, e), word, 0, word.length());
         view.setSelection(view.getText().length());
@@ -446,7 +448,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         catch(Exception ee){
-            s =  Math.max(view.getSelectionStart(), view.getText().length());
+            s = Math.max(view.getSelectionStart(), view.getText().length());
             e = Math.max(view.getSelectionEnd(), view.getText().length());
             st = s - 1;
             ed = e - 0;

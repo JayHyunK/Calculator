@@ -39,7 +39,7 @@ public class RVCalcListAdapter extends RecyclerView.Adapter <RVCalcListAdapter.V
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RVCalcListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(RVCalcListAdapter.ViewHolder holder, int position) {
         String txt = data.get(position);
         String[] arr = txt.split("#");
         holder.tv.setText(arr[0]);
