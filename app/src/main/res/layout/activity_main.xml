@@ -11,16 +11,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="38dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="visible">
 
         <Button
             android:id="@+id/button36"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/button"
-            tools:ignore="DuplicateSpeakableTextCheck"
-            style="?android:attr/buttonBarButtonStyle" />
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
         <Button
             android:id="@+id/button37"
@@ -42,13 +43,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="254dp"
+        android:layout_height="310dp"
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/calcList"
             android:layout_width="match_parent"
-            android:layout_height="254dp" />
+            android:layout_height="294dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -62,13 +63,20 @@
         <EditText
             android:id="@+id/caclEdit"
             android:layout_width="match_parent"
-            android:layout_height="67dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:backgroundTint="#6D3F51B5"
             android:ems="10"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:minHeight="48dp"
+            android:paddingLeft="13dp"
+            android:paddingTop="5dp"
+            android:paddingRight="13dp"
+            android:paddingBottom="5dp"
             android:text="@string/editTextBasic"
+            android:textSize="20sp"
+
             tools:ignore="LabelFor,SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
 
         <TextView
@@ -76,7 +84,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textAlignment="viewEnd" />
+            android:textAlignment="viewEnd"
+            android:visibility="gone" />
     </LinearLayout>
 
     <LinearLayout
@@ -97,7 +106,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/n"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5" />
 
             <Button
                 android:id="@+id/square"
@@ -106,7 +116,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/XmultiplyY"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5" />
 
             <Button
                 android:id="@+id/roots"
@@ -115,7 +126,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/roots"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5" />
 
             <Button
                 android:id="@+id/clear"
@@ -124,7 +136,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/clear"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5" />
 
             <Button
                 android:id="@+id/backSpace"
@@ -133,7 +146,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/backSpace"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5" />
 
         </LinearLayout>
 
@@ -149,16 +163,18 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/pi"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5" />
 
             <Button
                 android:id="@+id/leftBlock"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
                 android:text="@string/leftBlock"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5" />
 
             <Button
                 android:id="@+id/rightBlock"
@@ -167,7 +183,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/rightBlock"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5" />
 
             <Button
                 android:id="@+id/modular"
@@ -176,16 +193,18 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/mod"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5" />
 
             <Button
                 android:id="@+id/division"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
                 android:text="@string/division"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5" />
         </LinearLayout>
 
         <LinearLayout
@@ -200,43 +219,51 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/nFactorial"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5" />
 
             <Button
                 android:id="@+id/seven"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
                 android:text="@string/seven"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/eight"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
                 android:text="@string/eight"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/nine"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
                 android:text="@string/nine"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/multiply"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
                 android:text="@string/multiply"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5" />
         </LinearLayout>
 
         <LinearLayout
@@ -251,43 +278,51 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/log"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5" />
 
             <Button
                 android:id="@+id/four"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
                 android:text="@string/four"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/five"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
                 android:text="@string/five"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/six"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
                 android:text="@string/six"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/minus"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
                 android:text="@string/minus"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5" />
         </LinearLayout>
 
         <LinearLayout
@@ -302,43 +337,51 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/ln"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5" />
 
             <Button
                 android:id="@+id/one"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
                 android:text="@string/one"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/two"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
                 android:text="@string/two"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/three"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
                 android:text="@string/three"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/plus"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
                 android:text="@string/plus"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5" />
         </LinearLayout>
 
         <LinearLayout
@@ -353,7 +396,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/ans"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5" />
 
             <Button
                 android:id="@+id/e"
@@ -362,34 +406,39 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/e"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5" />
 
             <Button
                 android:id="@+id/zero"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
                 android:text="@string/zero"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/point"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAllCaps="false"
                 android:text="@string/point"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textAllCaps="false"
+                android:textColor="#3F51B5" />
 
             <Button
                 android:id="@+id/equal"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/equalsSign"
                 android:textAllCaps="false"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textColor="#3F51B5" />
 
         </LinearLayout>
     </LinearLayout>

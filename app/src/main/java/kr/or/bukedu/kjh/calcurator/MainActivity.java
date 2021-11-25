@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.*;
 
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         EditText calcEdit = findViewById(R.id.caclEdit);
         calcEdit.setTextIsSelectable(true);
         calcEdit.setShowSoftInputOnFocus(false);
+        calcEdit.requestFocus();
 
         Button nSquare = findViewById(R.id.nSquare);
         Button pi = findViewById(R.id.pi);
@@ -241,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(calcEdit.getText().toString().length()==1&&calcEdit.getText().toString().equals("0")){
-                    calcEdit.setText("!");
+                    calcEdit.setText("0!");
                 }
                 else{
                     str+="!";
@@ -284,10 +287,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str1 = list.get(list.size()-1);
                 String[] value = str1.split("#");
-                if(calcEdit.getText().toString().length()==1&&calcEdit.getText().toString().equals("0")){
-                    calcEdit.setText(value[1]);
-                }else {
-                    editTextReplace(calcEdit, value[1]);
+                if(!value[1].equals("올바른 수식이 아닙니다.")){
+                    if(calcEdit.getText().toString().length()==1&&calcEdit.getText().toString().equals("0")){
+                        calcEdit.setText(value[1]);
+                        editTextFocus(calcEdit);
+                    }else {
+                        editTextReplace(calcEdit, value[1]);
+                        editTextFocus(calcEdit);
+                    }
                 }
             }
         });
@@ -296,6 +303,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(calcEdit.getText().toString().length()==1&&calcEdit.getText().toString().equals("0")){
                     calcEdit.setText("√");
+                    editTextFocus(calcEdit);
                 }
                 else{
                     str="√";
@@ -320,6 +328,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(calcEdit.getText().toString().length()==1&&calcEdit.getText().toString().equals("0")){
                     calcEdit.setText("π");
+                    editTextFocus(calcEdit);
                 }
                 else{
                     str="π";
@@ -332,6 +341,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(calcEdit.getText().toString().length()==1&&calcEdit.getText().toString().equals("0")){
                     calcEdit.setText("e");
+                    editTextFocus(calcEdit);
                 }
                 else{
                     str="e";
@@ -343,7 +353,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 str = "";
-                calcEdit.setText("");
+                calcEdit.setText("0");
+                editTextFocus(calcEdit);
             }
         });
         square.setOnClickListener(new View.OnClickListener() {
@@ -380,6 +391,7 @@ public class MainActivity extends AppCompatActivity {
                     str=".";
                     editTextReplace(calcEdit, ".");
                 }
+                editTextFocus(calcEdit);
             }
         });
         log.setOnClickListener(new View.OnClickListener() {
@@ -387,6 +399,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(calcEdit.getText().toString().length()==1&&calcEdit.getText().toString().equals("0")){
                     calcEdit.setText("Log(");
+                    editTextFocus(calcEdit);
                 }
                 else{
                     str="Log(";
@@ -399,6 +412,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(calcEdit.getText().toString().length()==1&&calcEdit.getText().toString().equals("0")){
                     calcEdit.setText("Ln(");
+                    editTextFocus(calcEdit);
                 }
                 else{
                     str="Ln(";
@@ -409,15 +423,16 @@ public class MainActivity extends AppCompatActivity {
         equal.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String calcdata = calcEdit.getText().toString();
-                list.add(calc.mathCalc(calcdata));
+                String calcData = calcEdit.getText().toString();
+                list.add(calc.mathCalc(calcData));
                 str = "0";
                 calcEdit.setText(str);
 
+                editTextFocus(calcEdit);
                 RVCalcListAdapter adapter = new RVCalcListAdapter(list);
                 RecyclerView calcList = findViewById(R.id.calcList);
-
                 calcList.setAdapter(adapter);
+                calcList.scrollToPosition(adapter.getItemCount()-1);
             }
         });
     }
@@ -433,6 +448,11 @@ public class MainActivity extends AppCompatActivity {
         view.getText().replace(Math.min(s, e), Math.max(s, e), word, 0, word.length());
         view.setSelection(view.getText().length());
     }
+    public void editTextFocus(EditText view){
+        String str = view.getText().toString();
+        int e = str.length();
+        view.setSelection(e);
+    }
     public void editTextBack(EditText view){
         int s = Math.max(view.getSelectionStart(), 0);
         int e = Math.max(view.getSelectionEnd(), 0);
@@ -444,7 +464,30 @@ public class MainActivity extends AppCompatActivity {
                 view.setText("0");
             }
             else{
-                view.getText().delete(Math.min(st, ed), Math.max(st, ed));
+                int check = Math.max(view.getSelectionEnd(), 0);
+                String str = view.getText().toString();
+
+                if(check>2){
+                    str = str.substring(check-3, check);
+                    if(str.equals("Ln(")){
+                        st = s - 3;
+                        view.getText().delete(Math.min(st, ed), Math.max(st, ed));
+                    }
+                    else if(str.equals("og(")){
+                        st = s - 4;
+                        view.getText().delete(Math.min(st, ed), Math.max(st, ed));
+                    }
+                    else{
+                        view.getText().delete(Math.min(st, ed), Math.max(st, ed));
+                    }
+                }
+                else {
+                    view.getText().delete(Math.min(st, ed), Math.max(st, ed));
+                }
+            }
+
+            if(view.getText().length()==0){
+                view.setText("0");
             }
         }
         catch(Exception ee){

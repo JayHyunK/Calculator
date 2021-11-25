@@ -1,6 +1,7 @@
 package kr.or.bukedu.kjh.calcurator;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.EmptyStackException;
@@ -26,8 +27,8 @@ public class Calculator {
         put("!", 100);
         put("^", 50);
         put("π", 100);
-        put("log", 100); // 로그
-        put("ln", 100); // ln
+        put("Log", 100); // 로그
+        put("Ln", 100); // ln
         put("(", 50);
         put(")", 50);
        // put("exp", 50);
@@ -35,22 +36,27 @@ public class Calculator {
 
 
     public String mathCalc(String str){
-        ArrayList<Object> arr = makeArray(str);
-        ArrayList<Object> postfix = makePostfix(arr, operator);
-        String test1 = "0";
-        for(int i = 0 ; i<arr.size(); i++){
-            test1 += arr.get(i);
-        }
-        System.out.println(test1);
-
-        String test2 = "0";
-        for(int i = 0 ; i<postfix.size(); i++){
-            test2 += postfix.get(i);
-        }
-        System.out.println(test2);
-
-       // String result = calculate(postfix);
         String result = "0";
+        ArrayList<Object> arr = makeArray(str);
+        ArrayList<Object> postfix;
+        if(arr.get(arr.size()-1) instanceof String&&!arr.get(arr.size()-1).equals(")")){
+            result = "올바른 수식이 아닙니다.";
+        }
+        else{
+            postfix = makePostfix(arr, operator);
+            String test1 = "";
+            for(int i = 0 ; i<arr.size(); i++){
+                test1 += arr.get(i);
+            }
+            System.out.println(test1);
+
+            String test2 = "";
+            for(int i = 0 ; i<postfix.size(); i++){
+                test2 += postfix.get(i);
+            }
+            System.out.println(test2);
+            result = calculate(postfix);
+        }
         String data = str+"=#";
 
         String sum = data + result;
@@ -71,10 +77,24 @@ public class Calculator {
                     num = num.replace(key, "");
                     if(!num.equals("")){
                         arr.add(Double.parseDouble(num));
+                        if(key.equals("(")){
+                            arr.add("×");
+                        }
                         num = "";
                     }
                     arr.add(key);
                     flag = false;
+                    if(key.equals("(")) {
+                        if (String.valueOf(str.charAt(i + 1)).equals("+") || String.valueOf(str.charAt(i + 1)).equals("-")) {
+                            String[] numbers = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+                            for (int j = 0; j < numbers.length; j++) {
+                                if (String.valueOf(str.charAt(i + 2)).equals(numbers[j])) {
+                                    double tempnum = 0.0;
+                                    arr.add(tempnum);
+                                }
+                            }
+                        }
+                    }
                 }
                 else if (String.valueOf(str.charAt(i)).equals("L")){
                     String s1 = String.valueOf(str.charAt(i+1));
@@ -102,120 +122,126 @@ public class Calculator {
     public ArrayList<Object> makePostfix(ArrayList<Object> arr, HashMap<String, Integer> op){
         ArrayList<Object> postfix = new ArrayList<>();
         Stack<Object> operator = new Stack<>();
-
+        String t = "";
+        for(int l = 0; l<arr.size(); l++){
+            t+=arr.get(l);
+            t+="|";
+        }
+        System.out.println(t);
+        System.out.println(arr.size());
         for(int i = 0; i<arr.size(); i++){
             if(arr.get(i) instanceof Double){
                 postfix.add(arr.get(i));
             }
-            else if(arr.get(i).equals(")")){
-                int size = operator.size();
-                String temp = "";
-                for(int j = 0; j <size; j++) {
-                    if (operator.peek().equals("(") != true) {
-                        if (operator.isEmpty()!=true) {
-                            if (op.get(operator.peek()) == 10) {
-                                temp = operator.peek().toString();
+            else{
+                if(operator.isEmpty()!=true){
+                    if (operator.peek().equals("(")){
+                        // 스킵
+                    }
+                    else if (operator.peek().equals(")")){
+                        operator.pop();
+                        boolean flag=true;
+                        while(operator.isEmpty()!=true&&flag){
+                            if(operator.peek().equals("(")){
                                 operator.pop();
-                                if (!operator.isEmpty()) {
-                                    if (op.get(operator.peek()) > 10) {
-                                        postfix.add(operator.peek());
-                                        operator.pop();
-                                    } else if (!temp.equals("")) {
-                                        postfix.add(temp);
-                                        temp = "";
-                                    }
-                                }
-                                else{
-                                    operator.push(temp);
-                                    temp = "";
-                                }
-                            } else {
+                                flag=false;
+                            }else{
                                 postfix.add(operator.peek());
                                 operator.pop();
                             }
-                        } else {
-                            j = size;
                         }
                     }
                 }
-            }
-            else if(arr.get(i).equals("(")){
-
-            }
-            else {
-//                if(operator.isEmpty()!=true){
-//                    if (op.get(arr.get(i)) <= 10) {
-//                        if (!operator.peek().equals("+") && !operator.peek().equals("-")) {
-//                            postfix.add(operator.peek());
-//                            operator.pop();
-//                        }
-//                    }
-//                }
+                if(operator.isEmpty()!=true){
+                    System.out.println(i);
+                    if (op.get(arr.get(i)) <= 10) {
+                        if (!operator.peek().equals("+") && !operator.peek().equals("-")) {
+                            if(!operator.peek().equals("(")&&!operator.peek().equals(")")){
+                                postfix.add(operator.peek());
+                                operator.pop();
+                            }
+                        }
+                    }
+                }
                 operator.push(arr.get(i));
             }
         }
         int size = operator.size();
         for(int i = 0; i<size; i++){
-            postfix.add(operator.peek());
+            if(!operator.peek().equals("(")&&!operator.peek().equals(")")){
+                postfix.add(operator.peek());
+            }
             operator.pop();
         }
         return postfix;
     }
 
     public String calculate(ArrayList<Object> postfix){
-        double result=0;
+        String result = "0";
         boolean flag = true;
-
-        while(flag==true) {
-            flag = false;
-            for (int i = 0; i < postfix.size(); i++) {
-                if (postfix.get(i) instanceof String) {
-                    if (postfix.get(i).equals("+") || postfix.get(i).equals("-") || postfix.get(i).equals("×") || postfix.get(i).equals("÷") || postfix.get(i).equals("^")) {
-
-                        if (i == 0 || i == 1) {
-
-                        } else {
-                            double pre = (double) postfix.get(i - 2);
-                            double post = (double) postfix.get(i - 1);
-                            postfix.set(i, calculateNumber(post, pre, postfix.get(i).toString()));
-                            postfix.remove(i - 1);
-                            postfix.remove(i - 2);
-                        }
-                    } else if (postfix.get(i).equals("π") || postfix.get(i).equals("√") || postfix.get(i).equals("e") || postfix.get(i).equals("!") || postfix.get(i).equals("Log") || postfix.get(i).equals("Ln")) {
-                        if (i == 0) {
-
-                        } else {
-                            if(postfix.size()==1&&postfix.get(i).equals("π")){
-                                postfix.set(i, Math.PI);
-                            }
-                            else if(postfix.size()==1&&postfix.get(i).equals("e")){
-                                postfix.set(i, Math.E);
-                            }
-                            else{
-                                double post = (double) postfix.get(i - 1);
-                                postfix.set(i, calculateNumber(post, postfix.get(i).toString()));
-                                postfix.remove(i - 1);
-                            }
-                        }
-                    }
-                }
-            }
-            if (postfix.size() > 1) {
-                flag = true;
-                boolean check = true;
+        try {
+            while (flag == true) {
+                flag = false;
                 for (int i = 0; i < postfix.size(); i++) {
                     if (postfix.get(i) instanceof String) {
-                        check = false;
-                        i = postfix.size();
+                        if (postfix.get(i).equals("+") || postfix.get(i).equals("-") || postfix.get(i).equals("×") || postfix.get(i).equals("÷") || postfix.get(i).equals("^") || postfix.get(i).equals("%")) {
+                            if (i == 0 || i == 1) {
+
+                            } else {
+                                if(postfix.get(i-2) instanceof String!=true&&postfix.get(i-1) instanceof String!=true){
+                                    double pre = (double) postfix.get(i - 2);
+                                    double post = (double) postfix.get(i - 1);
+                                    postfix.set(i, calculateNumber(post, pre, postfix.get(i).toString()));
+                                    postfix.remove(i - 1);
+                                    postfix.remove(i - 2);
+                                }
+                            }
+                        } else if (postfix.get(i).equals("π") || postfix.get(i).equals("√") || postfix.get(i).equals("e") || postfix.get(i).equals("!") || postfix.get(i).equals("Log") || postfix.get(i).equals("Ln")) {
+                            if (i == 0) {
+
+                            } else {
+                                if (postfix.size() == 1 && postfix.get(i).equals("π")) {
+                                    postfix.set(i, Math.PI);
+                                } else if (postfix.size() == 1 && postfix.get(i).equals("e")) {
+                                    postfix.set(i, Math.E);
+                                } else {
+                                    double post = (double) postfix.get(i - 1);
+                                    postfix.set(i, calculateNumber(post, postfix.get(i).toString()));
+                                    postfix.remove(i - 1);
+                                }
+                            }
+                        }
                     }
                 }
-                if (postfix.get(0) instanceof Double && postfix.get(1) instanceof Double && check == true) {
-                    postfix.add("×");
+                if (postfix.size() > 1) {
+                    flag = true;
+                    boolean check = true;
+                    for (int i = 0; i < postfix.size(); i++) {
+                        if (postfix.get(i) instanceof String) {
+                            check = false;
+                            i = postfix.size();
+                        }
+                    }
+                    if (postfix.get(0) instanceof Double && postfix.get(1) instanceof Double && check == true) {
+                        postfix.add("×");
+                    }
                 }
             }
+            double n1 = (double) postfix.get(0);
+            int n2 = (int) n1;
+
+            if(n1==n2){
+                result = n2+"";
+            }else{
+                result = postfix.get(0).toString();
+            }
+            //result = postfix.get(0).toString();
         }
-        result = (double) postfix.get(0);
-        return String.valueOf(result);
+        catch (Exception e){
+            System.out.println("Calculate Error: "+e);
+            result = "올바른 수식이 아닙니다.";
+        }
+        return result;
     }
     public Double calculateNumber(double pre, double post, String op){
         double result = 0;

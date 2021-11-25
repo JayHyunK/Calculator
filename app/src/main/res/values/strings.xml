@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Calculator</string>
+    <string name="app_name">계산기</string>
     <string name="n">x^2</string>
     <string name="rightBlock">)</string>
     <string name="multiply">×</string>
@@ -9,7 +9,7 @@
     <string name="ans">ans</string>
     <string name="equalsSign">=</string>
     <string name="plus">+</string>
-    <string name="button">Button</string>
+    <string name="button"></string>
     <string name="two">2</string>
     <string name="one">1</string>
     <string name="backSpace">지움</string>
@@ -35,4 +35,5 @@
     <string name="nine">9</string>
     <string name="XmultiplyY">x^y</string>
     <string name="editTextBasic">0</string>
+    <string name="toastMessage">올바른 수식이 아닙니다.</string>
 </resources>
