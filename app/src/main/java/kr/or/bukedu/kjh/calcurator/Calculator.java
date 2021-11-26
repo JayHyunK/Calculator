@@ -40,7 +40,13 @@ public class Calculator {
         ArrayList<Object> arr = makeArray(str);
         ArrayList<Object> postfix;
         if(arr.get(arr.size()-1) instanceof String&&!arr.get(arr.size()-1).equals(")")){
-            result = "올바른 수식이 아닙니다.";
+            if(arr.get(arr.size()-1).equals("!")||arr.get(arr.size()-1).equals("e")||arr.get(arr.size()-1).equals("π")){
+                postfix = makePostfix(arr, operator);
+                result = calculate(postfix);
+            }
+            else{
+                result = "올바른 수식이 아닙니다.";
+            }
         }
         else{
             postfix = makePostfix(arr, operator);
